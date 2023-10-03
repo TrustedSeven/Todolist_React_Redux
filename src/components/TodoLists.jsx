@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteTodo,
@@ -9,26 +9,34 @@ import {
 
 export const TodoLists = () => {
   const todos = useSelector((state) => state.todoReducer.todos);
+  const [todoLists, setTodoLists] = useState(todos);
   const dispatch = useDispatch();
   const [selectedTodo, setSelectedTodo] = useState([]);
   const [all, setAll] = useState(true);
   const [completed, setCompleted] = useState(false);
   const [incompleted, setIncompleted] = useState(false);
 
+  useEffect(() => {
+    setTodoLists(todos);
+  }, [todos]);
+
   const handleAllClick = () =>{
     setAll(true);
     setCompleted(false);
     setIncompleted(false);
+    setTodoLists(todos);
   }
   const handleCompletedClick = () =>{
     setAll(false);
     setCompleted(true);
     setIncompleted(false);
+    setTodoLists(todos.filter(todo =>todo.isCompleted === true));
   }
   const handleIncompletedClick = () =>{
     setAll(false);
     setCompleted(false);
     setIncompleted(true);
+    setTodoLists(todos.filter(todo =>todo.isCompleted === false));
   }
 
   const actionClick = (data) => {
@@ -121,8 +129,8 @@ export const TodoLists = () => {
         </thead>
 
         <tbody>
-          {todos &&
-            todos.map((todo, index) => (
+          {todoLists &&
+            todoLists.map((todo, index) => (
               <tr key={index}>
                 <td>
                   <input
