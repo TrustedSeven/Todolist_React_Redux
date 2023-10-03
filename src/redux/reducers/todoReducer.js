@@ -13,8 +13,8 @@ import {
         id: 1,
         title: "TodoList 1",
         description: "This is first todo",
-        isCompleted: true,
-        isPending: false,
+        isCompleted: false,
+        isPending: true,
       },
       {
         id: 2,
@@ -101,7 +101,7 @@ import {
           selectedTodo.title = selectedTodo?.title;
           selectedTodo.description = selectedTodo?.description;
           selectedTodo.isCompleted = true;
-          selectedTodo.isPending = selectedTodo?.isPending;
+          selectedTodo.isPending = false;
           allTodos.push(selectedTodo);
         });
   

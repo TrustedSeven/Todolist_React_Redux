@@ -1,11 +1,35 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteTodo, editTodo, markTodoCompleted, clearAlltodo } from "../redux/actions";
+import {
+  deleteTodo,
+  editTodo,
+  markTodoCompleted,
+  clearAlltodo,
+} from "../redux/actions";
 
 export const TodoLists = () => {
   const todos = useSelector((state) => state.todoReducer.todos);
   const dispatch = useDispatch();
   const [selectedTodo, setSelectedTodo] = useState([]);
+  const [all, setAll] = useState(true);
+  const [completed, setCompleted] = useState(false);
+  const [incompleted, setIncompleted] = useState(false);
+
+  const handleAllClick = () =>{
+    setAll(true);
+    setCompleted(false);
+    setIncompleted(false);
+  }
+  const handleCompletedClick = () =>{
+    setAll(false);
+    setCompleted(true);
+    setIncompleted(false);
+  }
+  const handleIncompletedClick = () =>{
+    setAll(false);
+    setCompleted(false);
+    setIncompleted(true);
+  }
 
   const actionClick = (data) => {
     if (data && data?.type === "edit") {
@@ -20,35 +44,38 @@ export const TodoLists = () => {
       if (selectedTodo.indexOf(todoId) === -1) {
         setSelectedTodo((todo) => [...todo, todoId]);
       }
-    } else if (e?.target?.name !== "select_all_todo" && e?.target?.checked === false) {
+    } else if (
+      e?.target?.name !== "select_all_todo" &&
+      e?.target?.checked === false
+    ) {
       const todos = selectedTodo.filter((todo) => todo !== todoId);
       setSelectedTodo(todos);
     }
 
     if (e?.target?.name === "select_all_todo" && e?.target?.checked === true) {
-      todos && todos.forEach((todo, index) => {
-        const allChkbox = document.getElementsByName(`todo_${index}`);
+      todos &&
+        todos.forEach((todo, index) => {
+          const allChkbox = document.getElementsByName(`todo_${index}`);
 
-        for (let chk of allChkbox) {
-          chk.checked = true;
-          let todoId = todo?.id;
+          for (let chk of allChkbox) {
+            chk.checked = true;
+            let todoId = todo?.id;
 
-          setSelectedTodo((todo) => [
-            ...todo,
-            todoId
-          ]);
-        }
-      });
-    }
-
-    else if (e?.target?.name === "select_all_todo" && e?.target?.checked === false) {
-      todos && todos.forEach((todo, index) => {
-        const allChkbox = document.getElementsByName(`todo_${index}`);
-        for (let chk of allChkbox) {
-          chk.checked = false;
-          setSelectedTodo([]);
-        }
-      });
+            setSelectedTodo((todo) => [...todo, todoId]);
+          }
+        });
+    } else if (
+      e?.target?.name === "select_all_todo" &&
+      e?.target?.checked === false
+    ) {
+      todos &&
+        todos.forEach((todo, index) => {
+          const allChkbox = document.getElementsByName(`todo_${index}`);
+          for (let chk of allChkbox) {
+            chk.checked = false;
+            setSelectedTodo([]);
+          }
+        });
     }
   };
 
@@ -58,7 +85,7 @@ export const TodoLists = () => {
 
   return (
     <div className="container my-2">
-      <div className="row pb-4" style={{height: "60px"}}>
+      <div className="row pb-4" style={{ height: "60px" }}>
         <div className="col-xl-12 text-right">
           {selectedTodo.length > 0 && (
             <>
@@ -68,10 +95,7 @@ export const TodoLists = () => {
               >
                 Clear Todos
               </button>
-              <button
-                className="btn btn-success ml-2"
-                onClick={markCompleted}
-              >
+              <button className="btn btn-success ml-2" onClick={markCompleted}>
                 Mark As Completed
               </button>
             </>
@@ -97,45 +121,57 @@ export const TodoLists = () => {
         </thead>
 
         <tbody>
-          {todos && todos.map((todo, index) => (
-            <tr key={index}>
-              <td>
-                <input
-                  type={"checkbox"}
-                  value={todo?.id}
-                  onChange={(e) => changeEvent(e, todo?.id)}
-                  name={`todo_${index}`}
-                />
-              </td>
-              <td>{todo?.title}</td>
-              <td>{todo?.description}</td>
-              <td>
-                {todo?.isCompleted ? (
-                  <span className="badge badge-success p-2">Completed</span>
-                ) : todo?.isPending ? (
-                  <span className="badge badge-danger p-2">Pending</span>
-                ) : (
-                  ""
-                )}
-              </td>
-              <td>
-                <button
-                  className="btn btn-primary btn-sm"
-                  onClick={() => actionClick({ todo: todo, type: "edit" })}
-                >
-                  Edit
-                </button>
-                <button
-                  className="btn btn-danger btn-sm ml-1"
-                  onClick={() => actionClick({ todo: todo, type: "delete" })}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
+          {todos &&
+            todos.map((todo, index) => (
+              <tr key={index}>
+                <td>
+                  <input
+                    type={"checkbox"}
+                    value={todo?.id}
+                    onChange={(e) => changeEvent(e, todo?.id)}
+                    name={`todo_${index}`}
+                  />
+                </td>
+                <td>{todo?.title}</td>
+                <td>{todo?.description}</td>
+                <td>
+                  {todo?.isCompleted
+                    ? "Completed"
+                    : todo?.isPending
+                    ? "Pending"
+                    : ""}
+                </td>
+                <td>
+                  <button
+                    className="btn btn-primary btn-sm"
+                    onClick={() => actionClick({ todo: todo, type: "edit" })}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn btn-danger btn-sm ml-1"
+                    onClick={() => actionClick({ todo: todo, type: "delete" })}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
+      <div>
+        <div class="d-flex mt-5 btn-group" role="group">
+          <button type="button" class={`btn ${all ? 'btn-primary' : 'btn-secondary'}`} onClick={handleAllClick}>
+            All
+          </button>
+          <button type="button" class={`btn ${completed ? 'btn-primary' : 'btn-secondary'}`} onClick={handleCompletedClick}>
+            Completed
+          </button>
+          <button type="button" class={`btn ${incompleted ? 'btn-primary' : 'btn-secondary'}`} onClick={handleIncompletedClick}>
+            Pending
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
