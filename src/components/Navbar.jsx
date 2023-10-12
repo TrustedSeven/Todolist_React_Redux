@@ -12,12 +12,12 @@ export const Navbar = () => {
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Todolist_React_Redux/todo">
+              <a class="nav-link" href="/Todolist_React_Redux/#todo">
                 Todo
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Todolist_React_Redux/contact">
+              <a class="nav-link" href="/Todolist_React_Redux/#contact">
                 Contact
               </a>
             </li>
