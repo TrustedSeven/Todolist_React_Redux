@@ -16,7 +16,6 @@
     "redux": "^4.2.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "http://Todolist_React_Redux.github.io/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
