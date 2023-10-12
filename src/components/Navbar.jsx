@@ -7,17 +7,17 @@ export const Navbar = () => {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/Todolist_React_Redux">
+              <a class="nav-link active" aria-current="page" href="/">
                 About
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Todolist_React_Redux/todo">
+              <a class="nav-link" href="/todo">
                 Todo
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Todolist_React_Redux/contact">
+              <a class="nav-link" href="/contact">
                 Contact
               </a>
             </li>
