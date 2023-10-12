@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router,  Route, Routes, } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { About } from "./components/About";
 import { Contact } from "./components/Contact"
@@ -14,14 +14,14 @@ const App = () => {
       <Navbar /> 
       <Router>
         <Routes>
-          <Route exact path="/Todolist_React_Redux" element={<About />} />
-          <Route path="/Todolist_React_Redux/todo" element={
+          <Route exact path="/" element={<About />} />
+          <Route path="/todo" element={
             <div>
               <AddTodo />
               <TodoLists />
             </div>
           } />
-          <Route path="/Todolist_React_Redux/contact" element={<Contact />} />
+          <Route path="/contact" element={<Contact />} />
           {/* <Route path="/projects" element={<Projects />} /> */}
         </Routes>
       </Router>
