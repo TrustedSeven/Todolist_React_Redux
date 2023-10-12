@@ -14,14 +14,14 @@ const App = () => {
       <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<About />} />
-          <Route path="/todo" element={
+          <Route path="/Todolist_React_Redux" element={<About />} />
+          <Route path="/Todolist_React_Redux/todo" element={
             <div>
               <AddTodo />
               <TodoLists />
             </div>
           } />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/Todolist_React_Redux/contact" element={<Contact />} />
           {/* <Route path="/projects" element={<Projects />} /> */}
         </Routes>
       </BrowserRouter>
