@@ -14,7 +14,7 @@ const App = () => {
       <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route path="/odolist_React_Redux" element={<About />} />
+          <Route path="/" element={<About />} />
           <Route path="/todo" element={
             <div>
               <AddTodo />
