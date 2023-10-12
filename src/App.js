@@ -17,9 +17,8 @@ const App = () => {
           <Route path="/Todolist_React_Redux" element={<About />} />
           <Route path="/Todolist_React_Redux/todo" element={
             <div>
-              {/* <AddTodo />
-              <TodoLists /> */}
-              a
+              <AddTodo />
+              <TodoLists />
             </div>
           } />
           <Route path="/Todolist_React_Redux/contact" element={<Contact />} />
