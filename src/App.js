@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { About } from "./components/About";
 import { Contact } from "./components/Contact"
@@ -11,9 +11,9 @@ const App = () => {
   return (
     <div className="container p-4 mt-2">
       <h2>Todo Application</h2>
-      <Navbar />
+      <Navbar /> 
       <Router>
-        <Switch>
+        <Routes>
           <Route exact path="/Todolist_React_Redux" element={<About />} />
           <Route path="/Todolist_React_Redux/todo" element={
             <div>
@@ -23,7 +23,7 @@ const App = () => {
           } />
           <Route path="/Todolist_React_Redux/contact" element={<Contact />} />
           {/* <Route path="/projects" element={<Projects />} /> */}
-        </Switch>
+        </Routes>
       </Router>
     </div>
   );
