@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export const Navbar = () => {
   return (
@@ -6,20 +7,20 @@ export const Navbar = () => {
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/Todolist_React_Redux">
+            <li class="nav-item nav-link active">
+              <NavLink class="nav-link active" aria-current="page" to="/">
                 About
-              </a>
+              </NavLink>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Todolist_React_Redux/#todo">
+            <li class="nav-item nav-link">
+              <NavLink class="nav-link" to="/todo">
                 Todo
-              </a>
+              </NavLink>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Todolist_React_Redux/#contact">
+            <li class="nav-item nav-link">
+              <NavLink class="nav-link" to="/contact">
                 Contact
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>
